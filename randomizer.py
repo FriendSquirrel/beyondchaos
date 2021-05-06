@@ -4834,7 +4834,11 @@ def randomize(args):
         whelkshell = get_monster(0x100)
         whelkshell.stats['hp'] = 1
         whelkshell.write_stats(fout)
-
+        fix_magitek_random_sub = Substitution()
+        fix_magitek_random_sub.bytestring = bytes([0x06]) # This should set the randomizer for magitek skills to pick from 0-5 instead of 0-2.
+        fix_magitek_random_sub.set_location(0x20585)
+        fix_magitek_random_sub.write(fout)
+        
     for item in get_ranked_items(allow_banned=True):
         if item.banned:
             assert not dummy_item(item)
