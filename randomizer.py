@@ -633,6 +633,14 @@ def manage_commands(commands):
             # Fixing Gau
             c.set_battle_command(0, commands["fight"])
 
+        if options_.is_code_active('wildthing'):
+            c.set_battle_command(0, command_id=0)
+            c.set_battle_command(1, commands["rage"])
+            c.set_battle_command(2, command_id=2)
+            c.set_battle_command(3, command_id=1)
+            c.write_battle_commands(fout)
+            continue    
+            
         if options_.is_code_active('metronome'):
             c.set_battle_command(0, command_id=0)
             c.set_battle_command(1, command_id=0x1D)
